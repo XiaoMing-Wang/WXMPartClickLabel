@@ -12,7 +12,6 @@
 @property (nonatomic, strong) NSMutableArray *rangeArray;
 @end
 
-
 @implementation WXMPartClickLabel
 
 - (void)setDelegate:(id<WXMPartClickProtocol>)delegate {
@@ -43,10 +42,9 @@
             
             NSString *aString = [weakSelf.text substringWithRange:range];
             if (aString.length <= 0) return;
-            
+
             if (NSLocationInRange(idx, range)) {
-                if (weakSelf.delegate &&
-                    [weakSelf.delegate respondsToSelector:@selector(wxm_partClick:range:aString:)]) {
+                if ([weakSelf.delegate respondsToSelector:@selector(wxm_partClick:range:aString:)]) {
                     [weakSelf.delegate wxm_partClick:weakSelf range:range aString:aString];
                 }
                 *stop = YES;
